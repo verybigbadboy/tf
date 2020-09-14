@@ -37,6 +37,13 @@ resource "libvirt_volume" "ubuntu18" {
   format = "qcow2"
 }
 
+resource "libvirt_volume" "ubuntu20" {
+  name   = "ubuntu20-base-qcow2"
+  pool   = libvirt_pool.home.name
+  source = "https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img"
+  format = "qcow2"
+}
+
 
 data "template_file" "cloud_init_zabbix_agent" {
   template = file("${path.module}/fragments/zabbix_agent.cfg")
